@@ -1,4 +1,9 @@
+using UnionWebApi;
+
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddTransient(_ => new Database(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
 // Add services to the container.
 
