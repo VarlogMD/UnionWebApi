@@ -13,6 +13,7 @@ namespace UnionWebApi
         public string login { get; set; }
         public string pass { get; set; }
         public string email { get; set; }
+        public int current_room_id { get; set; }
 
         internal Database Db { get; set; }
 
@@ -60,7 +61,7 @@ namespace UnionWebApi
         public async Task<int> InsertAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"INSERT INTO  users  ( login,  pass, email ) VALUES (@login, @pass, @email);";
+            cmd.CommandText = @"INSERT INTO  users  ( login,  pass, email, current_room_id ) VALUES (@login, @pass, @email, @current_room_id);";
             BindParams(cmd);
             try
             {
@@ -77,7 +78,7 @@ namespace UnionWebApi
         public async Task UpdateAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"UPDATE  users  SET  login  = @login,  pass  = @pass, email = @email WHERE  user_id  = @user_id;";
+            cmd.CommandText = @"UPDATE  users  SET  login  = @login,  pass  = @pass, email = @email, current_room_id = @current_room_id WHERE  user_id  = @user_id;";
             BindParams(cmd);
             BindId(cmd);
             await cmd.ExecuteNonQueryAsync();
@@ -103,7 +104,8 @@ namespace UnionWebApi
                         user_id = reader.GetInt32(0),
                         login = reader.GetString(1),
                         pass = reader.GetString(2),
-                        email = reader.GetString(3)
+                        email = reader.GetString(3),
+                        current_room_id = reader.GetInt32(4)
                     };
                     posts.Add(post);
                 }
@@ -140,6 +142,12 @@ namespace UnionWebApi
                 ParameterName = "@email",
                 DbType = DbType.String,
                 Value = email,
+            });
+            cmd.Parameters.Add(new MySqlParameter
+            {
+                ParameterName = "@current_room_id",
+                DbType = DbType.String,
+                Value = current_room_id,
             });
 
         }
