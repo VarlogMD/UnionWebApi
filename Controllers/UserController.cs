@@ -38,6 +38,7 @@ namespace UnionWebApi.Controllers
         }
 
         // POST api/User
+        [BasicAuthorization]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]User body)
         {
@@ -50,6 +51,7 @@ namespace UnionWebApi.Controllers
         }
 
         // PUT api/User/5
+        [BasicAuthorization]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutOne(int id, [FromBody]User body)
         {
@@ -68,6 +70,7 @@ namespace UnionWebApi.Controllers
         }
 
         // DELETE api/User/5
+        [BasicAuthorization]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOne(int id)
         {

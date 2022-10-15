@@ -34,6 +34,7 @@ namespace UnionWebApi.Controllers
         }
 
         // POST api/Book
+        [BasicAuthorization]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]Room body)
         {
@@ -45,7 +46,9 @@ namespace UnionWebApi.Controllers
         }
 
         // PUT api/Book/5
+        [BasicAuthorization]
         [HttpPut("{id}")]
+        
         public async Task<IActionResult> PutOne(int id, [FromBody]Room body)
         {
             await Db.Connection.OpenAsync();
@@ -60,6 +63,7 @@ namespace UnionWebApi.Controllers
         }
 
         // DELETE api/Book/5
+        [BasicAuthorization]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOne(int id)
         {
