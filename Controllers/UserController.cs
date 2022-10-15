@@ -5,7 +5,8 @@ using System;
 
 
 namespace UnionWebApi.Controllers
-{
+{   
+    [ApiController]
     [Route("api/[controller]")]
     public class UserController : ControllerBase
     {

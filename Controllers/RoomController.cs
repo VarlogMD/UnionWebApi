@@ -2,7 +2,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace UnionWebApi.Controllers
-{
+{   
+    [ApiController]
     [Route("api/[controller]")]
     public class RoomController : ControllerBase
     {
