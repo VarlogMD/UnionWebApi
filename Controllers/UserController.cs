@@ -38,7 +38,6 @@ namespace UnionWebApi.Controllers
         }
 
         // POST api/User
-        [BasicAuthorization]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]User body)
         {

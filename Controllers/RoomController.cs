@@ -34,7 +34,6 @@ namespace UnionWebApi.Controllers
         }
 
         // POST api/Book
-        [BasicAuthorization]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]Room body)
         {
