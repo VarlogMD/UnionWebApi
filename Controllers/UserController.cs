@@ -15,6 +15,7 @@ namespace UnionWebApi.Controllers
         }
 
         // GET api/User
+        
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {

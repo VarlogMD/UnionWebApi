@@ -42,11 +42,12 @@ public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSc
         var authUsername = authSplit[0];
         var authPassword = authSplit.Length > 1 ? authSplit[1] : throw new Exception("Unable to get password");
 
-        Database db = new Database("server=127.0.0.1;user id=netuser;password=netpass;port=3306;database=unionappdb;");
+        Database db = new Database("server=127.0.0.1;user id=netuser;password=netpass;port=3306;database=users;");
 
         Login login = new Login(db);
         db.Connection.Open();
         var passwordFromDatabase = login.GetPassword(authUsername).Result;
+        
         //Console.WriteLine(passwordFromDatabase);
 
         if (passwordFromDatabase != null && BCrypt.Net.BCrypt.Verify(authPassword, passwordFromDatabase))
